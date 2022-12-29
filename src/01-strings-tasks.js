@@ -86,8 +86,8 @@ function extractNameFromTemplate(a) {
  *   'John Doe'  => 'J'
  *   'cat'       => 'c'
  */
-function getFirstChar(/* value */) {
-  throw new Error('Not implemented');
+function getFirstChar(a) {
+  return a[0];
 }
 
 /**
@@ -101,8 +101,8 @@ function getFirstChar(/* value */) {
  *   'cat'              => 'cat'
  *   '\tHello, World! ' => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingAndTrailingWhitespaces(a) {
+  return a.trim();
 }
 
 /**
@@ -116,8 +116,9 @@ function removeLeadingAndTrailingWhitespaces(/* value */) {
  *   'A', 5  => 'AAAAA'
  *   'cat', 3 => 'catcatcat'
  */
-function repeatString(/* value, count */) {
-  throw new Error('Not implemented');
+function repeatString(a, b) {
+  const c = a.repeat(b);
+  return c;
 }
 
 /**
@@ -132,8 +133,9 @@ function repeatString(/* value, count */) {
  *   'I like legends', 'end' => 'I like legs',
  *   'ABABAB','BA' => 'ABAB'
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(a, b) {
+  const c = a.replace(b, '');
+  return c;
 }
 
 /**
@@ -147,8 +149,10 @@ function removeFirstOccurrences(/* str, value */) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(a) {
+  const s = a.replace('<', '');
+  const s1 = s.replace('>', '');
+  return s1;
 }
 
 
@@ -162,8 +166,9 @@ function unbracketTag(/* str */) {
  *   'Thunderstruck' => 'THUNDERSTRUCK'
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
-function convertToUpperCase(/* str */) {
-  throw new Error('Not implemented');
+function convertToUpperCase(a) {
+  const s = a.toUpperCase();
+  return s;
 }
 
 /**
@@ -181,8 +186,9 @@ function convertToUpperCase(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(a) {
+  const b = a.split(';');
+  return b;
 }
 
 /**
@@ -208,8 +214,37 @@ function extractEmails(/* str */) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(w, h) {
+  let a = '';
+  for (let i = 1; i <= h; i += 1) {
+    for (let j = 1; j <= w; j += 1) {
+      if (i === 1 || i === h) {
+        if (i === 1 && j === 1) {
+          a += '┌';
+        } else if (i === h && j === 1) {
+          a += '└';
+        } else if (i === 1 && j === w) {
+          a += '┐\n';
+        } else if (i === h && j === w) {
+          a += '┘\n';
+        } else {
+          a += '─';
+        }
+      } else {
+        if (j !== 1 && j !== w) {
+          a += ' ';
+        } else {
+          a += '│';
+        }
+        if (j === w) {
+          a += '\n';
+        } else {
+          a += '';
+        }
+      }
+    }
+  }
+  return a;
 }
 
 
@@ -229,8 +264,32 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(s) {
+  const a = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  const b = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  let c = [];
+  for (let i = 0; i < s.length; i += 1) {
+    if (b.includes(s[i])) {
+      if (b.indexOf(s[i]) >= 13) {
+        c += b[b.indexOf(s[i]) - 13];
+      }
+      if (b.indexOf(s[i]) < 13) {
+        c += b[b.indexOf(s[i]) + 13];
+      }
+    }
+    if (a.includes(s[i])) {
+      if (a.indexOf(s[i]) >= 13) {
+        c += a[a.indexOf(s[i]) - 13];
+      }
+      if (a.indexOf(s[i]) < 13) {
+        c += a[a.indexOf(s[i]) + 13];
+      }
+    }
+    if (!a.includes(s[i]) && !b.includes(s[i])) {
+      c += s[i];
+    }
+  }
+  return c;
 }
 
 /**
