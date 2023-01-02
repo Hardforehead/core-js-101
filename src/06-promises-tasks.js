@@ -100,8 +100,15 @@ function getFastestPromise(a) {
  *    });
  *
  */
-function chainPromises(/* array, action */) {
-  throw new Error('Not implemented');
+async function chainPromises(a, b) {
+  const c = [];
+  for (let i = 0; i < a.length; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    await a[i].then((r) => c.push(r), () => true);
+  }
+  const d = c.reduce((x, y) => b(x, y));
+  const e = Promise.resolve(d);
+  return e;
 }
 
 module.exports = {
